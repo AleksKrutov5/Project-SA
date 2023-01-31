@@ -94,7 +94,7 @@ function createTable(massiveWord){
         tdTableWord.innerHTML = `${massiveWord[i].english}  : ${massiveWord[i].russian}`;
 
         tdTableWord.classList.add("td-text");
-        tdTableDel.innerHTML = '<img class="icon_remove" src="../img/deleteimg.jpg" alt="remove"" onclick="deleteWord(event)">';
+        tdTableDel.innerHTML = '<img class="icon_remove" src="./img/deleteimg.jpg" alt="remove"" onclick="deleteWord(event)">';
         tdTableDel.id = `btn-${i}`;
         trTable.appendChild(tdTableNumb);
         trTable.appendChild(tdTableWord);
