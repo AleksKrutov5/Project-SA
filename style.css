@@ -1,5 +1,5 @@
 body { 
-    background: url('../img/body.jpg'); 
+    background-image: url('./img/body.jpg'); 
     background-size: 100%;
 }
 
@@ -21,7 +21,7 @@ div.main-div button{
     box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
 }
 
-.head {
+/* .head {
     background: grey;
     padding: 50px 20px;
     text-align: center;
@@ -54,7 +54,7 @@ div.main-div button{
 }
 @media (max-width: 420px) {
     .head h1 {font-size: 2em;}
-}
+} */
 div.first-input{
     margin-top: 20px;
 }
@@ -82,7 +82,7 @@ input[type="text"] {
     line-height: inherit; 
     margin: 0;
     block-size: 30px;
-    width: 500px;
+    width: 700px;
     font-size:x-large;
 
 }
@@ -112,7 +112,7 @@ div.table-word table{
 }
 
 td {
-    text-align: left;
+    text-align: center;
     font-size: 20px;
     background-color:aliceblue;
 }

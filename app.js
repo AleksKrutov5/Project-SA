@@ -1,8 +1,10 @@
 let mainListWord = window.localStorage.getItem('mainListWord') ? JSON.parse(window.localStorage.getItem('mainListWord')) : [];;
 
 
-const btnTranslate = document.querySelector('#btn-translate');
-const btnSaveWord = document.querySelector('#btn-save');
+// const btnTranslate = document.querySelector('#btn-translate');
+// const btnSaveWord = document.querySelector('#btn-save');
+
+const mainInput = document.querySelector('#inputMain');
 const btnShowAllWords = document.querySelector('#btn-show-all-words');
 
 let divTable = document.querySelector('#table-div');
@@ -23,6 +25,7 @@ let itemsOfPagination = [];
 function createPagination(){
     let notesOnPage = 5;
     let countOfItems = Math.ceil(mainListWord.length / notesOnPage);
+
     pagination.innerHTML = '';
     for (let i = 1; i <= countOfItems; i++) {
         let li = document.createElement('li');
@@ -30,21 +33,23 @@ function createPagination(){
         pagination.appendChild(li);
         itemsOfPagination.push(li);
     }
-    
+    usePagination();
+}
+
+function usePagination(){
+    let notesOnPage = 5;
     for (let item of itemsOfPagination) {
             item.addEventListener('click', function() {
             let pageNum = +item.innerHTML;
-                console.log(232);
                 
             let start = (notesOnPage * pageNum) - notesOnPage;
             let end = start + notesOnPage;
             let notes = mainListWord.slice(start, end);
-            console.log(notes);
-        
             createTable(notes);
             });
         }
 }
+
 
 function translateWord(){
     let word = document.getElementById('inputMain').value;
@@ -54,31 +59,44 @@ function translateWord(){
     else {
             let apiUrl = `https://api.mymemory.translated.net/get?q=${word}&langpair=en|rus`;
             fetch(apiUrl).then(res => res.json()).then(data => {
-            document.querySelector('#inputTranslate').value = data.responseData.translatedText;
+            let answer = {
+                'english' : word,
+                'russian' : data.responseData.translatedText,
+                'id' : mainListWord.length + 1
+            }
+            //document.querySelector('#inputTranslate').value = data.responseData.translatedText;
+            document.querySelector('#inputMain').value = answer.russian;
+            saveWord(answer);
+            
         });
     }
 }
 
-function saveWord(){
-    let inputTranslatedValue = document.querySelector('#inputTranslate').value;
-    let inputWordValue = document.querySelector('#inputMain').value;
-    let result = {
-        'english' : inputWordValue,
-        'russian' : inputTranslatedValue,
-        'id' : mainListWord.length + 1
-    };
+mainInput.addEventListener('keydown', function(event){
+    if(event.code == 'Enter') {
+        translateWord();
+    }
+})
+
+function saveWord(respWord){
+    // let inputTranslatedValue = document.querySelector('#inputTranslate').value;
+    // let inputWordValue = document.querySelector('#inputMain').value;
+    // let result = {
+    //     'english' : inputWordValue,
+    //     'russian' : inputTranslatedValue,
+    //     'id' : mainListWord.length + 1
+    // };
     for(let item of mainListWord){
         console.log(item.english);
-        console.log(inputTranslatedValue);
-        if(item.english == inputWordValue){
-
-            return alert('Данное слово уже имеется в Вашем словаре');
+        // console.log(inputTranslatedValue);
+        if(item.english == respWord.english){
+            return alert(`Данное слово уже имеется в Вашем словаре, оно переводится как: "${respWord.russian}"`);
         }
     }
-    mainListWord.push(result);
+    mainListWord.push(respWord);
     window.localStorage.setItem('mainListWord' , JSON.stringify(mainListWord));
-    document.querySelector('#inputMain').value = 'Enter a word';
-    document.querySelector('#inputTranslate').value = 'Translated word:';
+    // document.querySelector('#inputMain').value = 'Enter a word';
+    // document.querySelector('#inputTranslate').value = 'Translated word:';
     
 }
 
@@ -87,16 +105,16 @@ function createTable(massiveWord){
     for(let i = 0; i < massiveWord.length; i++){
 
         let trTable = document.createElement('tr');
-        let tdTableNumb = document.createElement('td');
+        //let tdTableNumb = document.createElement('td');
         let tdTableWord = document.createElement('td');
         let tdTableDel = document.createElement('button');
-        tdTableNumb.innerHTML = massiveWord[i].id;
+        //tdTableNumb.innerHTML = ;
         tdTableWord.innerHTML = `${massiveWord[i].english}  : ${massiveWord[i].russian}`;
 
         tdTableWord.classList.add("td-text");
-        tdTableDel.innerHTML = '<img class="icon_remove" src="../img/deleteimg.jpg" alt="remove"" onclick="deleteWord(event)">';
-        tdTableDel.id = `btn-${i}`;
-        trTable.appendChild(tdTableNumb);
+        tdTableDel.innerHTML = '<img class="icon_remove" src="./img/deleteimg.jpg" alt="remove"" onclick="deleteWord(event)">';
+        tdTableDel.id = `btn-${massiveWord[i].id}`;
+       // trTable.appendChild(tdTableNumb);
         trTable.appendChild(tdTableWord);
         trTable.appendChild(tdTableDel);
         table.appendChild(trTable);
@@ -106,13 +124,18 @@ function createTable(massiveWord){
 }
 
 function deleteWord(event){
-    let index = +event.target.parentNode.id.slice(4);
+    console.log(event.target.parentNode.id);
+    let index = +event.target.parentNode.id.slice(4) - 1;
+    console.log(index);
+    console.log(mainListWord[index]);
     mainListWord.splice(index, 1);
-    createTable(mainListWord);
+    window.localStorage.setItem('mainListWord' , JSON.stringify(mainListWord));
+    createTable(mainListWord.slice(0, index + 1));
+    
 }
 
-btnTranslate.addEventListener('click', translateWord);
-btnSaveWord.addEventListener('click', saveWord);
+//btnTranslate.addEventListener('click', translateWord);
+//btnSaveWord.addEventListener('click', saveWord);
 btnShowAllWords.addEventListener('click', () => createTable(mainListWord.slice(0, 5)));
 
 
