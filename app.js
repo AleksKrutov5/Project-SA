@@ -60,7 +60,7 @@ function usePagination(){
 
 
 function translateWord(){
-    let wordTrn = document.getElementById('inputMain').value;
+    let wordTrn = document.getElementById('inputMain').value.toLowerCase();
     console.log(wordTrn);
     if(wordTrn == ''){
         alert('Введите слово которое хотите перевести!');
@@ -68,9 +68,9 @@ function translateWord(){
     else {
             let apiUrl = `https://api.mymemory.translated.net/get?q=${wordTrn}&langpair=en|rus`;
             fetch(apiUrl).then(res => res.json()).then(data => {
-                if(wordTrn.toLowerCase() == data.responseData.translatedText.toLowerCase()){
-                    return alert('Не издевайтесь над программой, Вам известен перевод данного слова.');
-                };
+                // if(wordTrn.toLowerCase() == data.responseData.translatedText.toLowerCase()){
+                //     return alert('Не издевайтесь над программой, Вам известен перевод данного слова.');
+                // };
                 console.log(data);
             let answer = {
                 'english' : wordTrn,
