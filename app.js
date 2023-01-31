@@ -74,7 +74,7 @@ function translateWord(){
                 console.log(data);
             let answer = {
                 'english' : wordTrn,
-                'russian' : data.responseData.translatedText,
+                'russian' : data.responseData.translatedText.toLowerCase(),
                 'id' : mainListWord.length + 1
             }
             //document.querySelector('#inputTranslate').value = data.responseData.translatedText;
