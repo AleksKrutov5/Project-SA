@@ -22,6 +22,14 @@ const pagination = document.querySelector('#pagination');
 
 let itemsOfPagination = [];
 
+
+mainInput.addEventListener('keydown', function(event){
+    if(event.code == 'Enter') {
+        translateWord();
+    }
+})
+
+
 function createPagination(){
     let notesOnPage = 5;
     let countOfItems = Math.ceil(mainListWord.length / notesOnPage);
@@ -72,11 +80,7 @@ function translateWord(){
     }
 }
 
-mainInput.addEventListener('keydown', function(event){
-    if(event.code == 'Enter') {
-        translateWord();
-    }
-})
+
 
 function saveWord(respWord){
     // let inputTranslatedValue = document.querySelector('#inputTranslate').value;
