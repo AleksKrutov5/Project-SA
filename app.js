@@ -60,15 +60,20 @@ function usePagination(){
 
 
 function translateWord(){
-    let word = document.getElementById('inputMain').value;
-    if(word == ''){
+    let wordTrn = document.getElementById('inputMain').value;
+    console.log(wordTrn);
+    if(wordTrn == ''){
         alert('Введите слово которое хотите перевести!');
     } 
     else {
-            let apiUrl = `https://api.mymemory.translated.net/get?q=${word}&langpair=en|rus`;
+            let apiUrl = `https://api.mymemory.translated.net/get?q=${wordTrn}&langpair=en|rus`;
             fetch(apiUrl).then(res => res.json()).then(data => {
+                if(wordTrn.toLowerCase() == data.responseData.translatedText.toLowerCase()){
+                    return alert('Не издевайтесь над программой, Вам известен перевод данного слова.');
+                };
+                console.log(data);
             let answer = {
-                'english' : word,
+                'english' : wordTrn,
                 'russian' : data.responseData.translatedText,
                 'id' : mainListWord.length + 1
             }
@@ -91,7 +96,6 @@ function saveWord(respWord){
     //     'id' : mainListWord.length + 1
     // };
     for(let item of mainListWord){
-        console.log(item.english);
         // console.log(inputTranslatedValue);
         if(item.english == respWord.english){
             return alert(`Данное слово уже имеется в Вашем словаре, оно переводится как: "${respWord.russian}"`);
@@ -136,7 +140,7 @@ function deleteWord(event){
     console.log(mainListWord[index]);
     mainListWord.splice(index, 1);
     window.localStorage.setItem('mainListWord' , JSON.stringify(mainListWord));
-    createTable(mainListWord.slice(0, index + 1));
+    createTable(mainListWord.slice(0, 5));
     
 }
 
