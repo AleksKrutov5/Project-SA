@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ProductTranslate</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="main-div">
+        <div class="head">
+            <h1> Personal dictionary </h1>
+        </div>
+        <div class="first-input">
+            <input type="text" size="30" id="inputMain" maxlength="15" value="Enter a word" onfocus="this.value=''">
+            <button id="btn-translate">Translate</button>
+        </div>
+        <div class="second-input">
+            <input type="text" size="30" id="inputTranslate" maxlength="15" value="Translated word:">
+            <button id="btn-save">Add word</button>
+        </div>
+        <div class="show-all" id="show-div">
+            <button id="btn-show-all-words">Show all words</button>
+        </div>
+        <div class="table-word" id="table-div">
+        </div>
+        <ul id="pagination"></ul>
+    </div>
+</body>
+<script src="app.js"></script>
+</html>

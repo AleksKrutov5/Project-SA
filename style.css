@@ -1,0 +1,143 @@
+body { 
+    background: url(/img/50072cce5c6c0af9484ea.jpg); 
+    background-size: 100%;
+}
+
+div.main-div{
+    margin-top: 100px;
+    margin: 0;
+    position: absolute;
+    top: 20%;
+    left: 35%;
+    margin-right: 50%;
+}
+
+div.main-div button{
+    display: inline-block;
+    width: 200px;
+    font-size: 25px;
+    background-color: grey; 
+    color: white;
+    box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
+}
+
+.head {
+    background: grey;
+    padding: 50px 20px;
+    text-align: center;
+    border: solid black;
+    border-width: 2px;
+}
+.head h1 {
+    font-family: 'Open Sans', sans-serif;
+    position: relative;
+    color: white;
+    font-size: 3em;
+    font-weight: normal;
+    line-height: 1;
+    padding: 10px 0;
+    margin: 0;
+    display: inline-block;
+}
+.head h1:before {
+    content: ""; 
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    width: 80%;
+    height: 200%;
+    border-radius: 50%/30%;
+    border: 6px solid white;
+    border-left-color: transparent;
+    border-right-color: transparent;
+}
+@media (max-width: 420px) {
+    .head h1 {font-size: 2em;}
+}
+div.first-input{
+    margin-top: 20px;
+}
+div.show-all{
+    margin-top: 10px;
+}
+div.show-all button{
+    width: 712px;
+}
+
+div.main-div button:hover {
+    background-color: white; /* Green */
+    color: black;
+}
+
+div.second-input{
+    margin-top: 10px;
+}
+
+
+
+input[type="text"] {
+    font-family: inherit;
+    font-size: inherit; 
+    line-height: inherit; 
+    margin: 0;
+    block-size: 30px;
+    width: 500px;
+    font-size:x-large;
+
+}
+
+input:focus {
+    box-shadow: 1px 1px 2px 0 red;
+}
+
+#inputTranslate{
+    cursor: not-allowed;
+}
+
+.icon_remove{
+    width: 30px;
+    height: 30px;
+}
+
+div.table-word button{
+    width: 46px;
+    height: 40px;
+}
+
+div.table-word table{
+    margin-top: 15px;
+    width: 100%;
+
+}
+
+td {
+    text-align: left;
+    font-size: 20px;
+    background-color:aliceblue;
+}
+
+.td-text {
+    width: 645px;
+}
+
+
+
+#pagination {
+	display: flex;
+	padding: 0;
+	list-style-type: none;
+}
+#pagination li {
+	margin-right: 5px;
+	padding: 10px;
+	border: 1px solid black;
+    background-color: grey;
+}
+#pagination li:hover, #pagination li.active {
+	cursor: pointer;
+	color: red;
+	border: 1px solid red;
+    background-color: white;
+}
+
