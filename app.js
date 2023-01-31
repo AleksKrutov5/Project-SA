@@ -68,13 +68,13 @@ function translateWord(){
     else {
             let apiUrl = `https://api.mymemory.translated.net/get?q=${wordTrn}&langpair=en|rus`;
             fetch(apiUrl).then(res => res.json()).then(data => {
-                // if(wordTrn.toLowerCase() == data.responseData.translatedText.toLowerCase()){
-                //     return alert('Не издевайтесь над программой, Вам известен перевод данного слова.');
-                // };
+                if(data.responseData.translatedText == null || wordTrn.toLowerCase() == data.responseData.translatedText.toLowerCase()){
+                    return alert('Выполнить перевод не удалось. Возможно вы ввели неккоректное слово.');
+                };
                 console.log(data);
             let answer = {
                 'english' : wordTrn,
-                'russian' : data.responseData.translatedText.toLowerCase(),
+                'russian' : data.responseData.translatedText,
                 'id' : mainListWord.length + 1
             }
             //document.querySelector('#inputTranslate').value = data.responseData.translatedText;
