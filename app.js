@@ -95,6 +95,7 @@ function saveWord(respWord){
     }
     mainListWord.push(respWord);
     window.localStorage.setItem('mainListWord' , JSON.stringify(mainListWord));
+    createPagination();
     // document.querySelector('#inputMain').value = 'Enter a word';
     // document.querySelector('#inputTranslate').value = 'Translated word:';
     
@@ -114,7 +115,8 @@ function createTable(massiveWord){
         tdTableWord.classList.add("td-text");
         tdTableDel.innerHTML = '<img class="icon_remove" src="./img/deleteimg.jpg" alt="remove"" onclick="deleteWord(event)">';
         tdTableDel.id = `btn-${massiveWord[i].id}`;
-       // trTable.appendChild(tdTableNumb);
+        
+        //trTable.appendChild(tdTableNumb);
         trTable.appendChild(tdTableWord);
         trTable.appendChild(tdTableDel);
         table.appendChild(trTable);
