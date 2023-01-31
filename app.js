@@ -46,7 +46,6 @@ function createPagination(){
         }
 }
 
-
 function translateWord(){
     let word = document.getElementById('inputMain').value;
     if(word == ''){
