@@ -24,6 +24,7 @@ let itemsOfPagination = [];
 
 
 mainInput.addEventListener('keydown', function(event){
+    alert(event.keyCode);
     if(event.code == 'Enter') {
         translateWord();
     }
